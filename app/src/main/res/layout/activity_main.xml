@@ -176,10 +176,10 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="5dp"
                         android:fontFamily="@font/viga"
-                        android:text="inicio"
+                        android:text="@string/txt_login"
                         android:textColor="@color/white"
                         app:backgroundTint="#004e9f"
-                        app:icon="@drawable/vistobueno"
+                        android:drawableRight="@drawable/vistobueno"
                         android:background="@drawable/btn_login"
                         app:iconGravity="textEnd"
                         />

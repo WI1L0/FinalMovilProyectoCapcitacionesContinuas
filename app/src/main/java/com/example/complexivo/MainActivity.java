@@ -309,7 +309,8 @@ public class MainActivity extends AppCompatActivity{
 
                     }
                 } else {
-                    Toast.makeText(this, "Pass incorrecto", Toast.LENGTH_SHORT).show();
+                        toastGreen("Contraseña Incorrecta");
+                    //Toast.makeText(this, "Pass incorrecto", Toast.LENGTH_SHORT).show();
                 }
             } else {
                 System.out.println("wwwwwwwwwwwwwwww10");
@@ -317,7 +318,8 @@ public class MainActivity extends AppCompatActivity{
                     this.validatorGeneric("CREDENCIALES ERRONEAS", "Verifique su usuario y contraseña.",2);
 
                 }catch (Exception e){
-                    Toast.makeText(this, "Datos incorrectos", Toast.LENGTH_SHORT).show();
+                    toastGreen("Datos Incorrectos");
+                    //Toast.makeText(this, "Datos incorrectos", Toast.LENGTH_SHORT).show();
 
                 }
             }
@@ -346,11 +348,13 @@ public class MainActivity extends AppCompatActivity{
                     intent.putExtra("rol", "capacitador");
                     startActivity(intent);
                 } else {
-                    Toast.makeText(this, "Usted esta bloqueado", Toast.LENGTH_SHORT).show();
+                    toastGreen("Usted se encuentra Bloqueado");
+                    //Toast.makeText(this, "Usted esta bloqueado", Toast.LENGTH_SHORT).show();
                 }
 
             } else {
-                Toast.makeText(this, "Acceso denegado", Toast.LENGTH_SHORT).show();
+                toastGreen("Acceso Denegado");
+                //Toast.makeText(this, "Acceso denegado", Toast.LENGTH_SHORT).show();
             }
 
             cursor2.close();
@@ -367,7 +371,8 @@ public class MainActivity extends AppCompatActivity{
         }
 
         if (rol.equals("Administrador")) {
-            Toast.makeText(this, "Administrador sin acceso", Toast.LENGTH_SHORT).show();
+            toastGreen("Administrador sin Acceso");
+            //Toast.makeText(this, "Administrador sin acceso", Toast.LENGTH_SHORT).show();
         }
     }
 

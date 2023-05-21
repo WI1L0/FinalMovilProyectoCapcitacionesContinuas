@@ -124,7 +124,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="TextView" />
+                        android:text="" />
                 </LinearLayout>
 
                 <View
@@ -155,7 +155,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="TextView" />
+                        android:text="" />
                 </LinearLayout>
 
                 <View
@@ -186,7 +186,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="TextView" />
+                        android:text="" />
                 </LinearLayout>
 
                 <View
@@ -222,7 +222,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="TextView" />
+                            android:text="" />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -259,7 +259,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="TextView" />
+                            android:text="" />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -296,7 +296,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="TextView" />
+                            android:text="" />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -333,7 +333,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="TextView" />
+                            android:text="" />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -370,7 +370,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="TextView" />
+                            android:text="" />
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
@@ -416,7 +416,7 @@
                             android:id="@+id/txtvdescripciondtcurso"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="TextView" />
+                            android:text="" />
                     </LinearLayout>
                 </ScrollView>
             </LinearLayout>
@@ -452,7 +452,7 @@
                             android:id="@+id/txtvobjetivosdtcurso"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="TextView" />
+                            android:text="" />
                     </LinearLayout>
                 </ScrollView>
             </LinearLayout>
@@ -488,7 +488,7 @@
                             android:id="@+id/txtvrequisitosdtcurso"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="TextView" />
+                            android:text="" />
                     </LinearLayout>
                 </ScrollView>
             </LinearLayout>
