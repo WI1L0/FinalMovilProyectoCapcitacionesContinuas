@@ -10,7 +10,10 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ImageButton;
@@ -140,7 +143,7 @@ public class Asistencia extends AppCompatActivity {
                             finish();
                             //moveToProgramas(id, rol);
                         } else {
-                            Toast.makeText(Asistencia.this, "Faltan datos por llenar", Toast.LENGTH_SHORT).show();
+                            toastGreen("Faltan datos por llenar");
                             // alerta de asi q quiera guardar con datos vacios pueda aserlo
                         }
                     }
@@ -364,6 +367,19 @@ public class Asistencia extends AppCompatActivity {
             }
 
         }
+    }
+
+    public void toastGreen(String msg){
+        LayoutInflater layoutInflater = getLayoutInflater();
+        View view = layoutInflater.inflate(R.layout.custom_toast_interrogante, (ViewGroup) findViewById(R.id.toast_interrogante));
+        TextView camposmsg = view.findViewById(R.id.txtmensajetoas);
+        camposmsg.setText(msg);
+
+        Toast toast = new Toast(getApplicationContext());
+        toast.setGravity(Gravity.CENTER_VERTICAL | Gravity.BOTTOM, 0 , 200);
+        toast.setDuration(Toast.LENGTH_LONG);
+        toast.setView(view);
+        toast.show();
     }
 
     public void recargarListaAsistencia(int id) {

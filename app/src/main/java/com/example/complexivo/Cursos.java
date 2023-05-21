@@ -9,7 +9,13 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.os.Bundle;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.SearchView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.complexivo.Adaptadores.CursosAdaptador;
 import com.example.complexivo.DB.DataBase;
@@ -79,8 +85,8 @@ public class Cursos extends AppCompatActivity {
 
         CursosAdaptador cursosAdaptador = new CursosAdaptador(filtered, this, new CursosAdaptador.OnItemClickListener() {
             @Override
-            public void onItemClick(MCursos item) {
-                moveToDescription(item, rol);
+            public void onItemClick(MCursos item, int porcentaje) {
+                moveToDescription(item, rol, porcentaje);
             }
 
             @Override
@@ -146,8 +152,8 @@ public class Cursos extends AppCompatActivity {
     public void init(String rol) {
         CursosAdaptador cursosAdaptador = new CursosAdaptador(listaCursos, this, new CursosAdaptador.OnItemClickListener() {
             @Override
-            public void onItemClick(MCursos item) {
-                moveToDescription(item, rol);
+            public void onItemClick(MCursos item, int porcentaje) {
+                moveToDescription(item, rol, porcentaje);
             }
 
             @Override
@@ -161,13 +167,17 @@ public class Cursos extends AppCompatActivity {
         recycleViewCursos.setAdapter(cursosAdaptador);
     }
 
-    public void moveToDescription(MCursos item, String rol) {
-        if (rol.equals("capacitador")) {
-            Intent intent = new Intent(this, Asistencia.class);
-            intent.putExtra("idCurso", item.getIdCurso());
-            //intent.putExtra("id", id);
-            intent.putExtra("rol", rol);
-            startActivity(intent);
+    public void moveToDescription(MCursos item, String rol, int porcentaje) {
+        if (porcentaje != 100) {
+            if (rol.equals("capacitador")) {
+                Intent intent = new Intent(this, Asistencia.class);
+                intent.putExtra("idCurso", item.getIdCurso());
+                //intent.putExtra("id", id);
+                intent.putExtra("rol", rol);
+                startActivity(intent);
+            }
+        } else {
+            toastGreen("El curso ya concluyo");
         }
     }
 
@@ -175,5 +185,18 @@ public class Cursos extends AppCompatActivity {
         Intent intent = new Intent(this, Detalle_Curso.class);
         intent.putExtra("idCurso", id);
         startActivity(intent);
+    }
+
+    public void toastGreen(String msg){
+        LayoutInflater layoutInflater = getLayoutInflater();
+        View view = layoutInflater.inflate(R.layout.custom_toast_interrogante, (ViewGroup) findViewById(R.id.toast_interrogante));
+        TextView camposmsg = view.findViewById(R.id.txtmensajetoas);
+        camposmsg.setText(msg);
+
+        Toast toast = new Toast(getApplicationContext());
+        toast.setGravity(Gravity.CENTER_VERTICAL | Gravity.BOTTOM, 0 , 200);
+        toast.setDuration(Toast.LENGTH_LONG);
+        toast.setView(view);
+        toast.show();
     }
 }

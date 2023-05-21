@@ -14,10 +14,14 @@ import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.complexivo.DB.DataBase;
@@ -498,7 +502,7 @@ public class Import extends AppCompatActivity {
             progreso = barActualizar();
             pgsimport.setProgress(progreso);
 
-            Toast.makeText(this, "Datos almacenados", Toast.LENGTH_SHORT).show();
+            toastGreen("Datos almacenados", 1);
             btnimport.setVisibility(View.INVISIBLE);
             btnfinalizar.setVisibility(View.VISIBLE);
 
@@ -527,7 +531,7 @@ public class Import extends AppCompatActivity {
             return false;
         } else {
             System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
-            Toast.makeText(this, "Tiene datos que exportar", Toast.LENGTH_SHORT).show();
+            toastGreen("Tiene datos que exportar", 2);
             Intent intent = new Intent(this, Export.class);
             intent.putExtra("donde", "import");
             startActivity(intent);
@@ -571,5 +575,24 @@ public class Import extends AppCompatActivity {
                 estimg = false;
                 imgimport.setImageDrawable(drawable2);
             }
+    }
+
+    public void toastGreen(String msg, int est){
+        LayoutInflater layoutInflater = getLayoutInflater();
+        View view = null;
+        if (est == 1) {
+            view = layoutInflater.inflate(R.layout.custom_toast_ok, (ViewGroup) findViewById(R.id.toast_custom_ok));
+        }
+        if (est == 2) {
+            view = layoutInflater.inflate(R.layout.custom_toast_interrogante, (ViewGroup) findViewById(R.id.toast_interrogante));
+        }
+        TextView camposmsg = view.findViewById(R.id.txtmensajetoas);
+        camposmsg.setText(msg);
+
+        Toast toast = new Toast(getApplicationContext());
+        toast.setGravity(Gravity.CENTER_VERTICAL | Gravity.BOTTOM, 0 , 200);
+        toast.setDuration(Toast.LENGTH_LONG);
+        toast.setView(view);
+        toast.show();
     }
 }

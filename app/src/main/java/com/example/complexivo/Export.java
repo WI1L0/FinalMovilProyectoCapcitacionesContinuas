@@ -13,7 +13,10 @@ import android.nfc.Tag;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -187,11 +190,11 @@ public class Export extends AppCompatActivity {
                     protected void onPostExecute(Void aVoid) {
                         super.onPostExecute(aVoid);
                         finish();
-                        Toast.makeText(Export.this, "Puede continuar con su update", Toast.LENGTH_SHORT).show();
+                        toastGreen("Puede continuar con su update", 1);
                     }
                 }.execute();
             } else {
-                Toast.makeText(Export.this, "No hay datos para exportar", Toast.LENGTH_SHORT).show();
+                toastGreen( "No hay datos para exportar", 3);
             }
         }
     }
@@ -221,7 +224,7 @@ public class Export extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 System.out.println(error);
-                Toast.makeText(Export.this, "Error inesperado intentar nuevamente", Toast.LENGTH_SHORT).show();
+                toastGreen("Error inesperado intentar nuevamente", 2);
 
                     Drawable drawablef = getResources().getDrawable(R.drawable.reintentar_1);
                     imgexport.setImageDrawable(drawablef);
@@ -268,7 +271,7 @@ public class Export extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 System.out.println(error);
-                Toast.makeText(Export.this, "Error inesperado intentar nuevamente", Toast.LENGTH_SHORT).show();
+                toastGreen("Error inesperado intentar nuevamente", 2);
 
                     Drawable drawablef = getResources().getDrawable(R.drawable.reintentar_1);
                     imgexport.setImageDrawable(drawablef);
@@ -323,5 +326,27 @@ public class Export extends AppCompatActivity {
                 estimg = false;
                 imgexport.setImageDrawable(drawable2);
             }
+    }
+
+    public void toastGreen(String msg, int est){
+        LayoutInflater layoutInflater = getLayoutInflater();
+        View view = null;
+        if (est == 1) {
+            view = layoutInflater.inflate(R.layout.custom_toast_ok, (ViewGroup) findViewById(R.id.toast_custom_ok));
+        }
+        if (est == 2) {
+            view = layoutInflater.inflate(R.layout.custom_toast_x, (ViewGroup) findViewById(R.id.toast_x));
+        }
+        if (est == 3) {
+            view = layoutInflater.inflate(R.layout.custom_toast_interrogante, (ViewGroup) findViewById(R.id.toast_interrogante));
+        }
+        TextView camposmsg = view.findViewById(R.id.txtmensajetoas);
+        camposmsg.setText(msg);
+
+        Toast toast = new Toast(getApplicationContext());
+        toast.setGravity(Gravity.CENTER_VERTICAL | Gravity.BOTTOM, 0 , 200);
+        toast.setDuration(Toast.LENGTH_LONG);
+        toast.setView(view);
+        toast.show();
     }
 }

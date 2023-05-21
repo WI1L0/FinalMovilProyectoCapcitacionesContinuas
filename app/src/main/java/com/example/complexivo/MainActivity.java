@@ -98,7 +98,7 @@ public class MainActivity extends AppCompatActivity{
         if (sdb != null){
             //Toast.makeText(this, "BASE DE DATOS CREADA", Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(this, "ERROR EN CREAR BASE DE DATOS ", Toast.LENGTH_SHORT).show();
+            toastGreen("ERROR EN CREAR BASE DE DATOS ");
         }
 
 
@@ -347,6 +347,7 @@ public class MainActivity extends AppCompatActivity{
                     intent.putExtra("id", cursor2.getInt(0));
                     intent.putExtra("rol", "capacitador");
                     startActivity(intent);
+                    finish();
                 } else {
                     toastGreen("Usted se encuentra Bloqueado");
                     //Toast.makeText(this, "Usted esta bloqueado", Toast.LENGTH_SHORT).show();
@@ -368,6 +369,7 @@ public class MainActivity extends AppCompatActivity{
             intent.putExtra("id", id);
             intent.putExtra("rol", "alumno");
             startActivity(intent);
+            finish();
         }
 
         if (rol.equals("Administrador")) {

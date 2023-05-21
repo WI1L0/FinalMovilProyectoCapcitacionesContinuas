@@ -31,7 +31,7 @@ public class CursosAdaptador extends RecyclerView.Adapter<CursosAdaptador.ViewHo
     final CursosAdaptador.OnItemClickListener listener;
 
     public interface OnItemClickListener{
-        void onItemClick(MCursos item);
+        void onItemClick(MCursos item, int porcentaje);
 
         void onItemClickDetalle(int item);
     }
@@ -134,7 +134,7 @@ public class CursosAdaptador extends RecyclerView.Adapter<CursosAdaptador.ViewHo
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    listener.onItemClick(item);
+                    listener.onItemClick(item, porcentajeCurso(item.getFechaInicioCurso(), item.getFechaFinalizacionCurso()));
                 }
             });
         }
