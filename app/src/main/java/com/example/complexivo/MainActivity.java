@@ -98,7 +98,7 @@ public class MainActivity extends AppCompatActivity{
         if (sdb != null){
             //Toast.makeText(this, "BASE DE DATOS CREADA", Toast.LENGTH_SHORT).show();
         } else {
-            toastGreen("ERROR AL CREAR LA BASE DE DATOS ");
+            toastGreen("ERROR AL CREAR LA BASE DE DATOS ", 2);
         }
 
 
@@ -309,7 +309,7 @@ public class MainActivity extends AppCompatActivity{
 
                     }
                 } else {
-                        toastGreen("Contraseña Incorrecta");
+                        toastGreen("Contraseña Incorrecta", 3);
                     //Toast.makeText(this, "Pass incorrecto", Toast.LENGTH_SHORT).show();
                 }
             } else {
@@ -318,7 +318,7 @@ public class MainActivity extends AppCompatActivity{
                     this.validatorGeneric("CREDENCIALES ERRONEAS", "Verifique su usuario y contraseña.",2);
 
                 }catch (Exception e){
-                    toastGreen("Datos Incorrectos");
+                    toastGreen("Datos Incorrectos", 2);
                     //Toast.makeText(this, "Datos incorrectos", Toast.LENGTH_SHORT).show();
 
                 }
@@ -339,7 +339,7 @@ public class MainActivity extends AppCompatActivity{
             if (cursor2.moveToFirst()) {
 
                 if (cursor2.getInt(1) == 1) {
-                    toastGreen("Bienvenido Capacitador");
+                    toastGreen("Bienvenido Capacitador", 1);
 //                    Toast.makeText(this, "Bienvenido Capacitador", Toast.LENGTH_SHORT).show();
 
                     Intent intent = new Intent(this, Programas.class);
@@ -349,12 +349,12 @@ public class MainActivity extends AppCompatActivity{
                     startActivity(intent);
                     finish();
                 } else {
-                    toastGreen("Usted se encuentra Bloqueado");
+                    toastGreen("Usted se encuentra Bloqueado", 2);
                     //Toast.makeText(this, "Usted esta bloqueado", Toast.LENGTH_SHORT).show();
                 }
 
             } else {
-                toastGreen("Acceso Denegado");
+                toastGreen("Acceso Denegado", 2);
                 //Toast.makeText(this, "Acceso denegado", Toast.LENGTH_SHORT).show();
             }
 
@@ -362,7 +362,7 @@ public class MainActivity extends AppCompatActivity{
         }
         if (rol.equals("Participante")) {
 
-            toastGreen("Bienvenido Alumno");
+            toastGreen("Bienvenido Alumno", 1);
             //Toast.makeText(this, "Bienvenido Alumno", Toast.LENGTH_SHORT).show();
 
             Intent intent = new Intent(this, Programas.class);
@@ -373,7 +373,7 @@ public class MainActivity extends AppCompatActivity{
         }
 
         if (rol.equals("Administrador")) {
-            toastGreen("Administrador sin Acceso");
+            toastGreen("Administrador sin Acceso", 3);
             //Toast.makeText(this, "Administrador sin acceso", Toast.LENGTH_SHORT).show();
         }
     }
@@ -391,9 +391,18 @@ public class MainActivity extends AppCompatActivity{
         return estado;
     }
 
-    public void toastGreen(String msg){
+    public void toastGreen(String msg, int est){
         LayoutInflater layoutInflater = getLayoutInflater();
-        View view = layoutInflater.inflate(R.layout.custom_toast_ok, (ViewGroup) findViewById(R.id.toast_custom_ok));
+        View view = null;
+        if (est == 1) {
+            view = layoutInflater.inflate(R.layout.custom_toast_ok, (ViewGroup) findViewById(R.id.toast_custom_ok));
+        }
+        if (est == 2) {
+            view = layoutInflater.inflate(R.layout.custom_toast_x, (ViewGroup) findViewById(R.id.toast_x));
+        }
+        if (est == 3) {
+            view = layoutInflater.inflate(R.layout.custom_toast_interrogante, (ViewGroup) findViewById(R.id.toast_interrogante));
+        }
         TextView camposmsg = view.findViewById(R.id.txtmensajetoas);
         camposmsg.setText(msg);
 
