@@ -98,7 +98,7 @@ public class MainActivity extends AppCompatActivity{
         if (sdb != null){
             //Toast.makeText(this, "BASE DE DATOS CREADA", Toast.LENGTH_SHORT).show();
         } else {
-            toastGreen("ERROR EN CREAR BASE DE DATOS ");
+            toastGreen("ERROR AL CREAR LA BASE DE DATOS ");
         }
 
 
