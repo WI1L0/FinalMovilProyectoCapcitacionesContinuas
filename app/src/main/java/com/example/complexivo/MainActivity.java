@@ -345,6 +345,7 @@ public class MainActivity extends AppCompatActivity{
                     intent.putExtra("id", cursor2.getInt(0));
                     intent.putExtra("rol", "capacitador");
                     startActivity(intent);
+                    //finish();
                 } else {
                     Toast.makeText(this, "Usted esta bloqueado", Toast.LENGTH_SHORT).show();
                 }
