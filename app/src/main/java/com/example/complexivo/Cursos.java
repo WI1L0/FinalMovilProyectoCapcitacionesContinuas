@@ -85,8 +85,8 @@ public class Cursos extends AppCompatActivity {
 
         CursosAdaptador cursosAdaptador = new CursosAdaptador(filtered, this, new CursosAdaptador.OnItemClickListener() {
             @Override
-            public void onItemClick(MCursos item, int porcentaje) {
-                moveToDescription(item, rol, porcentaje);
+            public void onItemClick(MCursos item, int porcentaje, String estPubli) {
+                moveToDescription(item, rol, porcentaje, estPubli);
             }
 
             @Override
@@ -108,7 +108,7 @@ public class Cursos extends AppCompatActivity {
         if (rol.equals("alumno")) {
             if (est == false){
 
-                cursor = db.rawQuery("SELECT c.idCurso, c.nombreCurso, c.duracionCurso, c.nombreModalidadCurso, c.nombreTipoCurso, c.nombreEspecialidad, c.nombreArea, c.fechaInicioCurso, c.fechaFinalizacionCurso, c.fotoCurso " +
+                cursor = db.rawQuery("SELECT c.idCurso, c.nombreCurso, c.duracionCurso, c.nombreModalidadCurso, c.nombreTipoCurso, c.nombreEspecialidad, c.nombreArea, c.fechaInicioCurso, c.fechaFinalizacionCurso, c.fotoCurso, c.estadoPublicasionCurso " +
                                 "FROM cursos c INNER JOIN inscritos i ON i.idCurso = c.idCurso " +
                                 //"WHERE i.idUsuario = ? AND c.idPrograma = ? AND c.estadoAprovacionCurso != 'N' AND c.estadoCurso = '1' AND c.estadoPublicasionCurso = 'V' ORDER BY c.nombreCurso DESC;",
                                 "WHERE i.idUsuario = ? AND c.idPrograma = ? AND c.estadoAprovacionCurso = 'A' AND c.estadoCurso = '1' AND c.estadoPublicasionCurso in ('I','F')   ORDER BY c.nombreCurso DESC;",
@@ -116,7 +116,7 @@ public class Cursos extends AppCompatActivity {
 
             } else {
 
-                cursor = db.rawQuery("SELECT idCurso, nombreCurso, duracionCurso, nombreModalidadCurso, nombreTipoCurso, nombreEspecialidad, nombreArea, fechaInicioCurso, fechaFinalizacionCurso, fotoCurso " +
+                cursor = db.rawQuery("SELECT idCurso, nombreCurso, duracionCurso, nombreModalidadCurso, nombreTipoCurso, nombreEspecialidad, nombreArea, fechaInicioCurso, fechaFinalizacionCurso, fotoCurso, estadoPublicasionCurso " +
                                 //"FROM cursos WHERE idPrograma = ? AND estadoAprovacionCurso != 'N' AND estadoCurso = '1' AND estadoPublicasionCurso = 'V' ORDER BY nombreCurso DESC;",
                                 "FROM cursos WHERE idPrograma = ? AND estadoAprovacionCurso = 'A' AND estadoCurso = '1' AND estadoPublicasionCurso = 'V' ORDER BY nombreCurso DESC;",
                         new String[]{String.valueOf(idProgramas)});
@@ -124,7 +124,7 @@ public class Cursos extends AppCompatActivity {
             }
         } else {
 
-            cursor = db.rawQuery("SELECT idCurso, nombreCurso, duracionCurso, nombreModalidadCurso, nombreTipoCurso, nombreEspecialidad, nombreArea, fechaInicioCurso, fechaFinalizacionCurso, fotoCurso " +
+            cursor = db.rawQuery("SELECT idCurso, nombreCurso, duracionCurso, nombreModalidadCurso, nombreTipoCurso, nombreEspecialidad, nombreArea, fechaInicioCurso, fechaFinalizacionCurso, fotoCurso, estadoPublicasionCurso " +
                             //"FROM cursos WHERE idCapacitador = ? AND idPrograma = ? AND estadoAprovacionCurso != 'N' AND estadoCurso = '1' AND estadoPublicasionCurso = 'V' ORDER BY nombreCurso DESC;",
                             "FROM cursos WHERE idCapacitador = ? AND idPrograma = ? AND estadoAprovacionCurso = 'A' AND estadoCurso = '1' AND estadoPublicasionCurso = 'I' ORDER BY nombreCurso DESC;",
                     new String[]{String.valueOf(id), String.valueOf(idProgramas)});
@@ -143,6 +143,7 @@ public class Cursos extends AppCompatActivity {
             mCursos.setFechaInicioCurso(cursor.getString(7));
             mCursos.setFechaFinalizacionCurso(cursor.getString(8));
             mCursos.setFotoCurso(cursor.getString(9));
+            mCursos.setEstadoPublicasionCurso(cursor.getString(10));
             listaCursos.add(mCursos);
         }
         init(rol);
@@ -152,8 +153,8 @@ public class Cursos extends AppCompatActivity {
     public void init(String rol) {
         CursosAdaptador cursosAdaptador = new CursosAdaptador(listaCursos, this, new CursosAdaptador.OnItemClickListener() {
             @Override
-            public void onItemClick(MCursos item, int porcentaje) {
-                moveToDescription(item, rol, porcentaje);
+            public void onItemClick(MCursos item, int porcentaje, String estPubli) {
+                moveToDescription(item, rol, porcentaje, estPubli);
             }
 
             @Override
@@ -167,8 +168,11 @@ public class Cursos extends AppCompatActivity {
         recycleViewCursos.setAdapter(cursosAdaptador);
     }
 
-    public void moveToDescription(MCursos item, String rol, int porcentaje) {
-        if (porcentaje != 100) {
+    public void moveToDescription(MCursos item, String rol, int porcentaje, String estPubli) {
+        System.out.println(estPubli + "ggggggggggggggggggggggggggggggggggggggggggggg");
+        if (porcentaje == 100 && estPubli.equals("F")) {
+            toastGreen("El curso ya concluyo");
+        } else {
             if (rol.equals("capacitador")) {
                 Intent intent = new Intent(this, Asistencia.class);
                 intent.putExtra("idCurso", item.getIdCurso());
@@ -176,8 +180,6 @@ public class Cursos extends AppCompatActivity {
                 intent.putExtra("rol", rol);
                 startActivity(intent);
             }
-        } else {
-            toastGreen("El curso ya concluyo");
         }
     }
 

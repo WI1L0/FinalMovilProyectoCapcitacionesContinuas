@@ -13,7 +13,7 @@ public class MCursos implements Serializable {
     private String observacionCurso;
     private Boolean estadoCurso;
     private String estadoAprovacionCurso;
-    private Boolean estadoPublicasionCurso;
+    private String estadoPublicasionCurso;
     private String descripcionCurso;
     private String objetivoGeneralesCurso;
     private int numeroCuposCurso;
@@ -34,7 +34,7 @@ public class MCursos implements Serializable {
     public MCursos() {
     }
 
-    public MCursos(int idCurso, String nombreCurso, String fotoCurso, int duracionCurso, String observacionCurso, Boolean estadoCurso, String estadoAprovacionCurso, Boolean estadoPublicasionCurso, String descripcionCurso, String objetivoGeneralesCurso, int numeroCuposCurso, String fechaInicioCurso, String fechaFinalizacionCurso, String nombreEspecialidad, String nombreArea, String nombreTipoCurso, String nombreModalidadCurso, String horaInicio, String horaFin, MCapacitador mCapacitador, MProgramas mProgramas, List<MPrerequisitos> mPrerequisitosList) {
+    public MCursos(int idCurso, String nombreCurso, String fotoCurso, int duracionCurso, String observacionCurso, Boolean estadoCurso, String estadoAprovacionCurso, String estadoPublicasionCurso, String descripcionCurso, String objetivoGeneralesCurso, int numeroCuposCurso, String fechaInicioCurso, String fechaFinalizacionCurso, String nombreEspecialidad, String nombreArea, String nombreTipoCurso, String nombreModalidadCurso, String horaInicio, String horaFin, MCapacitador mCapacitador, MProgramas mProgramas, List<MPrerequisitos> mPrerequisitosList) {
         this.idCurso = idCurso;
         this.nombreCurso = nombreCurso;
         this.fotoCurso = fotoCurso;
@@ -115,11 +115,11 @@ public class MCursos implements Serializable {
         this.estadoAprovacionCurso = estadoAprovacionCurso;
     }
 
-    public Boolean getEstadoPublicasionCurso() {
+    public String getEstadoPublicasionCurso() {
         return estadoPublicasionCurso;
     }
 
-    public void setEstadoPublicasionCurso(Boolean estadoPublicasionCurso) {
+    public void setEstadoPublicasionCurso(String estadoPublicasionCurso) {
         this.estadoPublicasionCurso = estadoPublicasionCurso;
     }
 

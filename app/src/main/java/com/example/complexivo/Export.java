@@ -50,7 +50,7 @@ public class Export extends AppCompatActivity {
     private Boolean estimg = false;
 
     private int progreso = 0, count = 0;
-    private String host = "http://capacitaciones-continuas-ista.us-east-1.elasticbeanstalk.com/api/";
+    private String host = "http://161.35.10.103:8080/api/";
 
 
     private String donde = "export";
